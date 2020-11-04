@@ -11,7 +11,7 @@ There are a few reasons you might want to use this to pull data:
 
 # Requirements
 
-Since WRDS is a PostgreSQL backend, you will need PostgreSQL drivers to access it. You can find and install them from here: https://odbc.postgresql.org/. Once those are installed, boot up a fresh R session, load the package and you should be up and running.
+Since WRDS has a PostgreSQL backend, you will need PostgreSQL drivers to access it. You can find and install them from here: https://odbc.postgresql.org/. Once those are installed, boot up a fresh R session, load the package and you should be up and running.
 
 # Bugs, Questions, etc.
 
