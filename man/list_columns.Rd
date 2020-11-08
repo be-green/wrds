@@ -10,6 +10,8 @@ list_columns(con, tbl, ...)
 \item{con}{connection to wrds}
 
 \item{tbl}{name of table}
+
+\item{...}{other parameters to pass to `odbc::odbcListColumns()`}
 }
 \description{
 List columns of a table

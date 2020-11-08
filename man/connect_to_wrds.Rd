@@ -4,12 +4,14 @@
 \alias{connect_to_wrds}
 \title{Create database connection to WRDS back-end databases}
 \usage{
-connect_to_wrds(user = wrds_user(), pass = wrds_pass(), database = "wrds", ...)
+connect_to_wrds(user = wrds_user(), pass = wrds_pass(), ...)
 }
 \arguments{
 \item{user}{username to use for connection, defaults to calling `wrds_user()`}
 
 \item{pass}{password to use for connection, defaults to calling `wrds_pass()`}
+
+\item{...}{other arguments the user wants to pass too `DBI::dbConnect()`}
 }
 \description{
 Create database connection to WRDS back-end databases

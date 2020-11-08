@@ -10,15 +10,15 @@ peek <- function(con, tbl, n = 10) {
 #' List columns of a table
 #' @param con connection to wrds
 #' @param tbl name of table
+#' @param ... other parameters to pass to `odbc::odbcListColumns()`
 #' @export
 list_columns <- function(con, tbl, ...) {
   odbc::odbcListColumns(con, table = tbl, ...)
 }
 
-#' List all tables within an optional schema that match an optional pattern
+#' List all tables, optionally a subset within a specific schema
 #' @param con connection to database
 #' @param schema schema to match
-#' @param pattern pattern to match
 #' @export
 list_tables <- function(con, schema = NULL) {
   odbc::dbListTables(con, schema_name = schema)

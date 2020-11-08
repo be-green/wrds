@@ -2,7 +2,7 @@
 % Please edit documentation in R/explore.R
 \name{list_tables}
 \alias{list_tables}
-\title{List all tables within an optional schema that match an optional pattern}
+\title{List all tables, optionally a subset within a specific schema}
 \usage{
 list_tables(con, schema = NULL)
 }
@@ -10,9 +10,7 @@ list_tables(con, schema = NULL)
 \item{con}{connection to database}
 
 \item{schema}{schema to match}
-
-\item{pattern}{pattern to match}
 }
 \description{
-List all tables within an optional schema that match an optional pattern
+List all tables, optionally a subset within a specific schema
 }
