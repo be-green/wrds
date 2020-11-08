@@ -41,3 +41,42 @@ load_schema <- function(con, schema, env = parent.frame()) {
   }
   message("All finished!")
 }
+
+#' Get the schema of a set of tables
+#' @param tbl_cons table connections from dbplyr
+#' @importFrom stringr str_replace_all
+#' @importFrom stringr str_extract
+check_schema <- function(tbl_cons) {
+  if("tbl_sql" %in% class(tbl_cons)) {
+    tbl_cons <- list(tbl_cons)
+  }
+  sapply(tbl_cons,
+         function(tbl_con) {
+           stringr::str_replace_all(
+             stringr::str_extract(
+               as.character(tbl_con[["ops"]]$x),
+               "^.*\\."),
+             "[^A-Za-z]",""
+             )
+         }
+  )
+}
+
+#' Remove all table items created by loading a schema
+#' @param con connection to WRDS
+#' @param schema schema to clean up
+#' @export
+#' @details This function will remove any tables in the current (parent) environment
+#' that are in the chosen schema. Useful for cleaning up workspaces following
+#' `load_schema()`.
+clean_schema <- function(con, schema, env = parent.frame()) {
+  tbls <- intersect(list_tables(con, schema), ls(envir = env))
+  if(length(tbls) == 0) {
+    stop("There are no tables to remove in schema '", schema, "'.")
+  }
+  classes <- do.call(function(y) {
+    sapply(y, function(x) schema == check_schema(get(x)))
+    },args = list(y = tbls))
+  tbls <- tbls[which(classes)]
+  rm(list = tbls, envir = env)
+}
