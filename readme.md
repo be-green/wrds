@@ -9,6 +9,10 @@ There are a few reasons you might want to use this to pull data:
 1. You want to join across datasets which you can't attach on the front end
 1. You don't like web interfaces and want to feel superior to people who point and click
 
+To install the package, just run
+
+`devtools::install_github("be-green/wrds")`
+
 # Requirements
 
 Since WRDS has a PostgreSQL backend, you will need PostgreSQL drivers to access it. You can find and install them from here: https://odbc.postgresql.org/. Once those are installed, boot up a fresh R session, load the package and you should be up and running.

@@ -4,7 +4,7 @@
 \alias{connect_to_wrds}
 \title{Create database connection to WRDS back-end databases}
 \usage{
-connect_to_wrds(user = wrds_user(), pass = wrds_pass(), database = "wrds")
+connect_to_wrds(user = wrds_user(), pass = wrds_pass(), database = "wrds", ...)
 }
 \arguments{
 \item{user}{username to use for connection, defaults to calling `wrds_user()`}

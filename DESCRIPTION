@@ -13,5 +13,9 @@ Imports:
     DBI,
     odbc,
     stringr,
-    assertthat
+    assertthat,
+    progress,
+    data.table,
+    dplyr,
+    dbplyr
 RoxygenNote: 7.1.0
