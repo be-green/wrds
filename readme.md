@@ -78,6 +78,45 @@ Or you can write it in a separate file, save that, and pass the file name
 query(con, "monthly_nav_top_10.sql")
 ```
 
+## Working with dplyr/dbplyr
+
+The WRDS package also contains an interface that leverages the [dplyr](https://dplyr.tidyverse.org/) and [dbplyr](https://dbplyr.tidyverse.org/). You can connect (just as you would to other databases) to tables and load them as dplyr `tbls`. 
+
+
+```
+# get mutual fund monthly NAVs
+library(dplyr)
+library(dbplyr)
+library(wrds)
+
+con <- connect_to_wrds()
+
+monthly_nav <- tbl(con, in_schema("crsp", "monthly_nav"))
+
+# Grab NAVs from the last 2 years
+recent_navs <- monthly_nav %>% 
+  filter(caldt > "2019-01-01")
+  
+# bring into R's memory from database
+recent_navs <- collect(recent_navs)
+```
+
+You can also load all tables in a schema via the `load_schema` function. For example:
+
+```
+library(wrds)
+con <- connect_to_wrds()
+
+load_schema(con, "crsp")
+```
+
+You can then delete the loaded tables from your environment via
+
+```
+clean_schema(con, "crsp")
+
+```
+
 # Bugs, Questions, etc.
 
 If you find bugs or have questions feel free to open an issue or pull request. You can also reach me by email at bcg@mit.edu.
