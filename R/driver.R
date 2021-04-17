@@ -21,6 +21,9 @@ driver <- function() {
   if(!length(pg_drivers) > 0) {
     stop_no_driver()
   }
-
-  subset(pg_drivers, stringr::str_detect(pg_drivers, stringr::fixed(driver_type)))
+  if(grepl("windows",R.version$os) & length(pg_drivers > 1)) {
+    subset(pg_drivers, stringr::str_detect(pg_drivers, stringr::fixed(driver_type)))
+  } else {
+    pg_drivers
+  }
 }
