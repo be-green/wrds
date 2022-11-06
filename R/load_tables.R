@@ -65,6 +65,7 @@ check_schema <- function(tbl_cons) {
 #' Remove all table items created by loading a schema
 #' @param con connection to WRDS
 #' @param schema schema to clean up
+#' @param env environment to load schema into
 #' @export
 #' @details This function will remove any tables in the current (parent) environment
 #' that are in the chosen schema. Useful for cleaning up workspaces following

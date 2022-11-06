@@ -29,9 +29,11 @@ list_tables <- function(con, schema = NULL) {
 #' @param con connection to database
 #' @param pattern optional pattern to search across all schemas
 #' @export
-list_schemas <- function(con, pattern = "") {
-  schemas <- odbc::odbcListObjects(con)
-  schemas[which(str_detect(schemas$name, pattern)),]
+list_schemas <- function(con, pattern = "*") {
+  query(con, paste0("SELECT schema_name
+              FROM information_schema.schemata
+              WHERE schema_name like '%", pattern, "%'
+              ORDER BY schema_name;"))
 }
 
 #' List all of the tables and columns available in a schema
